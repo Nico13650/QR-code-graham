@@ -1,0 +1,267 @@
+body {
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* Titre */
+.message-felicitations {
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 1.6;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 2rem 1rem 1.5rem 1rem;
+  letter-spacing: 0.03em;
+}
+
+.message-felicitations .souhait {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+
+.immat {
+  color: #ffffff;
+  background: #00000000;
+  border-radius: 7px;
+  padding: 0.18em 0.35em;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+/* HALO SOUS L'AVION */
+.img-halo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-halo-container::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: 500vw;         /* Avant : 52% ou 65vw */
+  max-width: 550px;    /* Avant : 260px ou 340px */
+  height: 150px;       /* Avant : 48px ou 70px */
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.40) 0%,
+    rgba(255,255,255,0.18) 72%,
+    transparent 100%
+  );
+  z-index: 0;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.aircraft-img {
+  display: block;
+  width: 97vw;
+  max-width: 460px;
+  margin: 0 auto 1.2rem auto;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  /* Animation d'entrée */
+  opacity: 0;
+  transform: translateY(-50px) scale(0.90);
+  animation: avion-fade-slide-zoom 1.1s cubic-bezier(.56,.1,.35,1.18) 0.2s forwards;
+}
+
+/* Animation */
+@keyframes avion-fade-slide-zoom {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* TABLEAU CARACTÉRISTIQUES */
+.caracteristiques table {
+  width: 100%;
+  max-width: 410px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: #fff;
+  font-size: 1.08rem;
+  margin-top: 0.7rem;
+  background: rgba(20, 20, 20, 0.98);
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px #222b;
+}
+
+.caracteristiques h2 {
+  font-size: 1.16rem;
+  margin: 1.5rem 0 2rem 0;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.caracteristiques tr {
+  border-bottom: 1px solid #444;
+}
+.caracteristiques tr:last-child {
+  border-bottom: none;
+}
+
+.caracteristiques td {
+  padding: 0.36em 0.6em;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+  vertical-align: middle;
+  text-align: center; /* ✅ Ajout essentiel */
+}
+
+
+.caracteristiques td:first-child {
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  padding-right: 0;
+  color: #ffffff;
+  border-left: none;
+}
+.caracteristiques td:last-child {
+  font-weight: 400;
+  text-align: center;
+  border-right: none;
+}
+
+.boutons-fiche {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.3rem;
+}
+
+.btn-fiche {
+  background: #035e49;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0.8em 1.2em;
+  font-size: 1.06rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 3px 14px #222b;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  display: inline-block;
+}
+
+.btn-fiche:hover,
+.btn-fiche:focus {
+  background: #049c7c; /* Un vert un peu plus clair pour le hover, optionnel */
+  color: #fff;
+  box-shadow: 0 8px 28px #035e49;
+  text-decoration: none;
+}
+
+/* Pour le deuxième bouton, même style */
+.btn-brochure {
+  background: #035e49;
+}
+
+.btn-brochure:hover,
+.btn-brochure:focus {
+  background: #049c7c;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .boutons-fiche {
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  .btn-fiche, .btn-brochure {
+    width: 98%;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .boutons-fiche {
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  .btn-fiche, .btn-brochure {
+    width: 98%;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+  }
+  .fiche-avion {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    border-radius: 0;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+    margin-left: 6rem;
+    padding-top: 1.5rem;
+  }
+  .aircraft-img {
+    width: 80vw;
+    max-width: 100vw;
+    margin: 0 auto 1.1rem auto;
+    border-radius: 0;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    opacity: 0;
+    transform: translateY(-50px) scale(0.90);
+    animation: avion-fade-slide-zoom 1.1s cubic-bezier(.56,.1,.35,1.18) 0.2s forwards;
+  }
+  .img-halo-container::before {
+    width: 100vw;
+    max-width: 300px;
+    height: 20px;
+    bottom: 2px;
+    filter: blur(1.3px);
+  }
+  .caracteristiques {
+    padding: 1.1rem 0.5rem 2.2rem 0.7rem;
+    max-width: 100vw;
+    font-size: 1.09rem;
+  }
+  .caracteristiques h2 {
+    font-size: 1.05rem;
+  }
+}
