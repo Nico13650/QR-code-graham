@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>ULM WT9 F-JLZV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="style.css">
+  <!-- Favicon -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+  <div class="fiche-avion">
+    <h1 class="message-felicitations">
+      Félicitations M. Lejeune<br> pour l’achat de votre appareil<br>
+      <span class="souhait">Toute l’équipe Finesse Max<br> vous souhaite un bon vol !</span>
+    </h1>    
+    <div class="img-halo-container">
+      <img src="WT9-lejeune.png" alt="WT9 F-JLZV" class="aircraft-img">
+    </div>
+    <div class="caracteristiques">
+      <h2>Caractéristiques principales</h2>
+      <table>
+        <tr>
+          <td>Vitesse à ne jamais depassé (VNe)&nbsp;:</td>
+          <td>280&nbsp;km/h</td>
+        </tr>
+        <tr>
+          <td>Vitesse de croisière rapide&nbsp;:</td>
+          <td>240&nbsp;km/h</td>
+        </tr>
+        <tr>
+          <td>Autonomie pour 100L&nbsp;:</td>
+          <td>Environ 1600&nbsp;km</td>
+        </tr>
+        <tr>
+          <td>Places&nbsp;:</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>Moteur&nbsp;:</td>
+          <td>Rotax 912 ULS</td>
+        </tr>
+        <tr>
+          <td>Année&nbsp;:</td>
+          <td>2025</td>
+        </tr>
+        <tr>
+          <td>Train&nbsp;:</td>
+          <td>Fixe</td>
+        </tr>
+        <tr>
+          <td>Hélice&nbsp;:</td>
+          <td>Swirl 3</td>
+        </tr>
+      </table>
+      <div class="boutons-fiche">
+        <a href="https://drive.google.com/drive/folders/1qlzQHKOKBIlwoG62XPLCoXH7L8fspprl?usp=drive_link" target="_blank" class="btn-fiche">Voir les photos de l'arrivée de votre WT9</a>
+      </div>
+    </div>
+  </div>
+ <!-- Confettis élégants (chute plus basse) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+<script>
+  (function () {
+    const COLORS = ['#ffffff', '#04cba0', '#035e49']; // Couleurs Finesse Max
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    window.addEventListener('load', () => {
+      const startDelay = 1200; // attend la fin de l’animation de l’avion
+      setTimeout(runConfettiSequence, startDelay);
+    });
+
+    function burst(opts) {
+      confetti(Object.assign({
+        particleCount: 18,
+        startVelocity: 48,     // vitesse un peu plus forte pour une trajectoire plus longue
+        spread: 75,
+        ticks: 220,            // durée de vie des particules augmentée (avant : 140)
+        scalar: 0.9,
+        gravity: 1.2,          // gravité augmentée = descente plus visible
+        drift: 0.4,            // léger mouvement latéral naturel
+        colors: COLORS,
+        disableForReducedMotion: true
+      }, opts));
+    }
+
+    function runConfettiSequence() {
+      const duration = 1800; // animation un peu plus longue
+      const end = Date.now() + duration;
+
+      // Départ symétrique
+      burst({ angle: 62,  origin: { x: 0.02, y: 0.05 } });  // plus haut
+      burst({ angle: 118, origin: { x: 0.98, y: 0.05 } });
+
+      // Traîne avec descente progressive
+      (function frame() {
+        const timeLeft = end - Date.now();
+        const base = Math.max(0, timeLeft / duration);
+        const count = Math.round(8 + 12 * base);
+
+        burst({
+          particleCount: count,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0.05, y: 0.05 },
+          startVelocity: 40 + 12 * base
+        });
+
+        burst({
+          particleCount: count,
+          angle: 120,
+          spread: 70,
+          origin: { x: 0.95, y: 0.05 },
+          startVelocity: 40 + 12 * base
+        });
+
+        if (timeLeft > 0) requestAnimationFrame(frame);
+        else burst({
+          particleCount: 14,
+          angle: 90,
+          spread: 55,
+          origin: { x: 0.5, y: 0.05 },
+          startVelocity: 32,
+          gravity: 1.4, // pour que les derniers descendent vraiment bas
+          colors: ['#ffffff']
+        });
+      })();
+    }
+  })();
+</script>
+
+
+</body>
+</html>
